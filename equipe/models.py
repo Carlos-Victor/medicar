@@ -8,8 +8,8 @@ class Horarios(models.Model):
         verbose_name = 'Horario'
         verbose_name_plural = 'Horarios'
 
-        def __str__(self):
-            return self.horario
+    def __str__(self):
+        return self.horario
 
 
 class Especialidades(models.Model):
@@ -19,8 +19,8 @@ class Especialidades(models.Model):
         verbose_name = 'Especialidade'
         verbose_name_plural = 'Especialidades'
 
-        def __str__(self):
-            return self.nome
+    def __str__(self):
+        return self.nome
 
 
 class Medicos(models.Model):
@@ -35,8 +35,8 @@ class Medicos(models.Model):
         verbose_name = 'Medico'
         verbose_name_plural = 'Medicos'
 
-        def __str__(self):
-            return self.nome
+    def __str__(self):
+        return self.nome
 
 
 class Agenda(models.Model):
@@ -50,5 +50,5 @@ class Agenda(models.Model):
         verbose_name = 'Agenda'
         verbose_name_plural = 'Agendas'
 
-        def __str__(self):
-            return self.dia
+    def __str__(self):
+        return f'{self.dia}, Médico: {self.medico}'

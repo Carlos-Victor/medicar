@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from equipe.api_equipe.viewsets import *
+from consulta.api_consulta.viewsets import *
 
 router = routers.DefaultRouter()
 router.register(r'especialidades', EspecialidadesViewSet)
 router.register(r'medicos', MedicosViewset)
+router.register(r'consultas', ConsultasViewset)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
