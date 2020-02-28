@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from django_filters.rest_framework import DjangoFilterBackend, FilterSet
+from django_filters.rest_framework import DjangoFilterBackend
 from equipe.models import Especialidades, Medicos, Agenda
 from equipe.api_equipe.serializers import EspecialidadesSerializer, MedicosSerializer, AgendaSerializer
 from rest_framework import filters
