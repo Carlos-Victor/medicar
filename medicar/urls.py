@@ -20,9 +20,10 @@ from equipe.api_equipe.viewsets import *
 from consulta.api_consulta.viewsets import *
 
 router = routers.DefaultRouter()
-router.register(r'especialidades', EspecialidadesViewSet)
+router.register(r'especialidades', EspecialidadesViewset)
 router.register(r'medicos', MedicosViewset)
 router.register(r'consultas', ConsultasViewset)
+router.register(r'agendas', AgendaViewset, basename='agendas')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
