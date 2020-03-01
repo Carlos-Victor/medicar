@@ -1,3 +1,5 @@
+from django.db.models import Q
+from django.utils import timezone
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from equipe.models import Especialidades, Medicos, Agenda
@@ -19,6 +21,6 @@ class EspecialidadesViewset(viewsets.ReadOnlyModelViewSet):
     search_fields = ['nome']
 
 class AgendaViewset(viewsets.ReadOnlyModelViewSet):
-    queryset = Agenda.objects.all()
+    queryset = Agenda.objects.filter(dia__gte=timezone.now()).order_by('dia')
     serializer_class = AgendaSerializer
     filter_backends = [filters.SearchFilter]

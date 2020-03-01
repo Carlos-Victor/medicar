@@ -2,8 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Horarios(models.Model):
-    horario = models.CharField("Horarios", max_length=50)
-
+    horario = models.CharField("Horarios", max_length=6)
     class Meta:
         verbose_name = 'Horario'
         verbose_name_plural = 'Horarios'
