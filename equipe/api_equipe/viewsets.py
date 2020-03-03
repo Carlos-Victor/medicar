@@ -10,7 +10,7 @@ from rest_framework import filters
 class MedicosViewset(viewsets.ReadOnlyModelViewSet):
     queryset = Medicos.objects.all()
     serializer_class = MedicosSerializer
-    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     search_fields = ['nome']
     filterset_fields = ['especialidade']
 
@@ -24,3 +24,5 @@ class AgendaViewset(viewsets.ReadOnlyModelViewSet):
     queryset = Agenda.objects.filter(dia__gte=timezone.now()).order_by('dia')
     serializer_class = AgendaSerializer
     filter_backends = [filters.SearchFilter]
+
+
