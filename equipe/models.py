@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from datetime import date
 
 # Create your models here.
 class Horarios(models.Model):
@@ -14,6 +16,10 @@ class Horarios(models.Model):
 class Especialidades(models.Model):
     nome = models.CharField("Nome da Especialidade", max_length=50)
 
+    def clean(self):
+        if Especialidades.objects.filter(nome=self.nome).exists():
+            raise ValidationError('Essa Especilidade já existe')
+
     class Meta:
         verbose_name = 'Especialidade'
         verbose_name_plural = 'Especialidades'
@@ -25,8 +31,8 @@ class Especialidades(models.Model):
 class Medicos(models.Model):
     nome = models.CharField("Nome do Médico", max_length=50)
     crm = models.IntegerField("Código CRM")
-    email = models.EmailField("Email", max_length=254)
-    telefone = models.CharField("Telefone", max_length=50)
+    email = models.EmailField("Email", max_length=50, null=True, blank=True)
+    telefone = models.CharField("Telefone", max_length=50, null=True, blank=True)
     especialidade = models.ForeignKey("Especialidades", verbose_name=(
         "Especialidades"), on_delete=models.CASCADE)
 
@@ -44,7 +50,10 @@ class Agenda(models.Model):
     dia = models.DateField("Dia", auto_now=False, auto_now_add=False)
     horarios = models.ManyToManyField(
         "Horarios", verbose_name=("Horarios Disponiveis"))
-
+    
+    def clean(self):
+        if self.dia < date.today():
+            raise ValidationError('Não foi possivel criar uma agenda, data inferior que o dia de hoje')
     class Meta:
         verbose_name = 'Agenda'
         verbose_name_plural = 'Agendas'
