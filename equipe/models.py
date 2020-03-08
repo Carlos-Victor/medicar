@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from datetime import date
 
 # Create your models here.
-class Horarios(models.Model):
+class Horario(models.Model):
     horario = models.CharField("Horarios", max_length=6)
     class Meta:
         verbose_name = 'Horario'
@@ -13,11 +13,11 @@ class Horarios(models.Model):
         return self.horario
 
 
-class Especialidades(models.Model):
+class Especialidade(models.Model):
     nome = models.CharField("Nome da Especialidade", max_length=50)
 
     def clean(self):
-        if Especialidades.objects.filter(nome=self.nome).exists():
+        if Especialidade.objects.filter(nome=self.nome).exists():
             raise ValidationError('Essa Especilidade já existe')
 
     class Meta:
@@ -28,12 +28,12 @@ class Especialidades(models.Model):
         return self.nome
 
 
-class Medicos(models.Model):
+class Medico(models.Model):
     nome = models.CharField("Nome do Médico", max_length=50)
     crm = models.IntegerField("Código CRM")
     email = models.EmailField("Email", max_length=50, null=True, blank=True)
     telefone = models.CharField("Telefone", max_length=50, null=True, blank=True)
-    especialidade = models.ForeignKey("Especialidades", verbose_name=(
+    especialidade = models.ForeignKey("Especialidade", verbose_name=(
         "Especialidades"), on_delete=models.CASCADE)
 
     class Meta:
@@ -45,11 +45,11 @@ class Medicos(models.Model):
 
 
 class Agenda(models.Model):
-    medico = models.ForeignKey("Medicos", verbose_name=(
+    medico = models.ForeignKey("Medico", verbose_name=(
         "Medico"), on_delete=models.CASCADE)
     dia = models.DateField("Dia", auto_now=False, auto_now_add=False)
     horarios = models.ManyToManyField(
-        "Horarios", verbose_name=("Horarios Disponiveis"))
+        "Horario", verbose_name=("Horarios Disponiveis"))
     
     def clean(self):
         if self.dia < date.today():

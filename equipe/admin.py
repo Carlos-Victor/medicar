@@ -1,5 +1,5 @@
 from django.contrib import admin
-from equipe.models import Agenda, Medicos, Horarios, Especialidades
+from equipe.models import Agenda, Medico, Horario, Especialidade
 # Register your models here.
 
 class AgendaAdmin(admin.ModelAdmin):
@@ -7,7 +7,7 @@ class AgendaAdmin(admin.ModelAdmin):
     filter_horizontal = ('horarios',)
 
 
-admin.site.register(Especialidades)
-admin.site.register(Medicos)
-admin.site.register(Horarios)
+admin.site.register(Especialidade)
+admin.site.register(Medico)
+admin.site.register(Horario)
 admin.site.register(Agenda, AgendaAdmin)

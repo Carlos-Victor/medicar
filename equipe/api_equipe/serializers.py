@@ -1,18 +1,18 @@
 from rest_framework import serializers
-from equipe.models import Especialidades, Medicos, Agenda
+from equipe.models import Especialidade, Medico, Agenda
 
 
-class EspecialidadesSerializer(serializers.ModelSerializer):
+class EspecialidadeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Especialidades
+        model = Especialidade
         fields = '__all__'
 
 
-class MedicosSerializer(serializers.ModelSerializer):
-    especialidade = EspecialidadesSerializer(many=False)
+class MedicoSerializer(serializers.ModelSerializer):
+    especialidade = EspecialidadeSerializer(many=False)
 
     class Meta:
-        model = Medicos
+        model = Medico
         fields = ["nome", "crm", "telefone", "especialidade"]
 
 
@@ -22,7 +22,7 @@ class AgendaSerializer(serializers.ModelSerializer):
         read_only=True,
         slug_field='horario'
     )
-    medico = MedicosSerializer(many=False)
+    medico = MedicoSerializer(many=False)
 
     class Meta:
         model = Agenda

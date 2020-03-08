@@ -39,13 +39,22 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'consulta',
-    "rest_framework",
+    'rest_framework',
+    'rest_framework.authtoken',
     'equipe'
 ]
 
 DRF_EXPANDER_EXPAND_ARG = 'expand'
 
 REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication', 
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser',
+    ),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 

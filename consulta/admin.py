@@ -1,5 +1,5 @@
 from django.contrib import admin
-from consulta.models import Consultas
+from consulta.models import Consulta
 # Register your models here.
 
-admin.site.register(Consultas)
+admin.site.register(Consulta)
