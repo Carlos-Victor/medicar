@@ -29,9 +29,3 @@ python manage.py migrate
     echo "|                                                              |"
     echo "|                       Migrate aplicada.                      |"
     echo -e "|______________________________________________________________|${NC}"
-
-# python manage.py generator_token
-#     echo -e "${green} ______________________________________________________________"
-#     echo "|                                                              |"
-#     echo "|               Token Gerado e configurado                     |"
-#     echo -e "|______________________________________________________________|${NC}"
