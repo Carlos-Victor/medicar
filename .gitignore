@@ -1,1 +1,16 @@
-db.sqlite3
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+.DS_Store
+.coverage
+/.idea
